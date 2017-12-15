@@ -1,13 +1,17 @@
 <?php
+
 class bunga{
+
 	public function efektif($debet,$angsuran,$bunga){
 	$i = 1;
 	$html = '';
+		$bunga = $bunga/12;
 	$pokok2 = $debet;
 	$bungat = 0;
 	$pinjam = array();
 	while ($i <= $angsuran) {
 		$pokok = $debet/$angsuran;
+
 		$pinjam['angsuran'][$i] = array(
 			'sisa'=>round($pokok2),
 			'pokok'=>round($pokok,2),			
@@ -27,9 +31,11 @@ class bunga{
 	return $pinjam;
 	}
 
+
 	public function flat($debet,$angsuran,$bunga){
 	$i = 1;
 	$html = '';
+	$bunga = $bunga/12;
 	$pokok2 = $debet;
 	$bungat = 0;
 	$pinjam = array();
@@ -53,8 +59,8 @@ class bunga{
 		'total'=>$debet+$bungat);
 	return $pinjam;
 	}
-}
 
+}
 function uang($nilai){
 	return number_format($nilai, 2, ',', '.');
 }
@@ -93,8 +99,10 @@ function uang($nilai){
             	<tbody id="content" style="padding:8px !important;"></tbody>
             </table>  	
 
+
 <?php
 if(isset($_POST['submit'])){
+
 	$bunga = $_POST['bunga'];
 	$debet = $_POST['plafond'];
 	$waktu = $_POST['jangka'];
@@ -126,7 +134,7 @@ function autocomplet() {
 
 
     if (plafond.length >= min_length) {
-		$.getJSON('//<?php echo $_SERVER['SERVER_NAME'].'/'.$_SERVER['REQUEST_URI'];?>/preview.php?plafond='+plafond+'&bunga='+bunga+'&jangka='+jangka+'&model='+model, function(data) { 
+		$.getJSON('//localhost/bunga/preview.php?plafond='+plafond+'&bunga='+bunga+'&jangka='+jangka+'&model='+model, function(data) { 
 				$("#content > tr").remove();
 	    		$.each(data, function(index, element) {	   		
 	    		$("#content").append('<tr class="ref"><td>'+element.sisa+'</td><td>'+element.pokok+'</td><td>'+element.bunga+'</td><td>'+element.total+'</td></tr>');
