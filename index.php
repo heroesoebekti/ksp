@@ -69,7 +69,7 @@ function uang($nilai){
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>contoh aplikasi hutang</title>
 <style type="text/css">
 	table, tr, td {
 		border: 1px solid;
